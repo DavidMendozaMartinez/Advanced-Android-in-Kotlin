@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "159203231067",
+    "firebase_url": "https://fcm-codelab-egg-timer.firebaseio.com",
+    "project_id": "fcm-codelab-egg-timer",
+    "storage_bucket": "fcm-codelab-egg-timer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159203231067:android:ff4fc7b87b08eab323c67e",
+        "android_client_info": {
+          "package_name": "com.example.android.eggtimernotifications"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159203231067-jkv6g8rvo6f2kb5mdp5v4477rcue5ol0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwRxv6cRqt8P5fa072xc71dwtZVCDvU1k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159203231067-jkv6g8rvo6f2kb5mdp5v4477rcue5ol0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
