@@ -21,3 +21,4 @@ project.properties
 *.iws
 .gradle
 build/
+google-services.json
