@@ -20,20 +20,19 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.activity.addCallback
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
-import com.example.android.firebaseui_login_sample.databinding.*
+import androidx.navigation.fragment.findNavController
+import com.example.android.firebaseui_login_sample.databinding.FragmentLoginBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginFragment : Fragment() {
@@ -66,6 +65,28 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         navController = findNavController()
+
+        // If the user presses the back button, bring them back to the home screen
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            navController.popBackStack(R.id.mainFragment, false)
+        }
+
+        // Observe the authentication state so we can know if the user has logged in successfully.
+        // If the user has logged in successfully, bring them back to the settings screen.
+        // If the user did not log in successfully, display an error message.
+        viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenticationState ->
+            when (authenticationState) {
+                // Since our login flow is only one screen instead of multiple
+                // screens, we can utilize popBackStack(). If our login flow
+                // consisted of multiple screens, we would have to call
+                // popBackStack() multiple times.
+                LoginViewModel.AuthenticationState.AUTHENTICATED -> navController.popBackStack()
+                else -> Log.e(
+                    TAG,
+                    "Authentication state that doesn't require any UI change $authenticationState"
+                )
+            }
+        })
     }
 
     private fun launchSignInFlow() {
